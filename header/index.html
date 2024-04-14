@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/styleMobile.css" media="screen and (max-width: 600px)"/>
+        <link rel="stylesheet" href="css/header.css">
+        <link rel="stylesheet" href="css/headerMobile.css" media="screen and (max-width: 840px)">
+        <link
+            rel="stylesheet"
+            href="https://cdn-uicons.flaticon.com/2.3.0/uicons-bold-rounded/css/uicons-bold-rounded.css"
+        />
+        <title>Document</title>
+        <link href="./output.css" rel="stylesheet" />
+    </head>
+    <body>
+        <header>
+            <div id="left">
+                <h1 id="logoText">Adote um pet</h1>
+                <p>Duvidas frequentes</p>
+            </div>
+            <div id="right">
+                <div id="search">
+                    <i class="fi fi-br-search"></i
+                    ><input
+                        type="text"
+                        name="search"
+                        id="searchInp"
+                        placeholder="Search"
+                    />
+                </div>
+                <button id="entrar">Entrar</button>
+                <div id="avatar" style="display: none">
+                    <img id="avatarImg" src="" alt="avatar" />
+                </div>
+            </div>
+        </header>
+        <div id="userNav" style="display: none">
+            <h3 id="usuario">
+                ola <span id="usuarioName" style="color: #ffe450">aa</span>!
+            </h3>
+
+            <ul>
+                <div class="menu-item">
+                    <li>Animais salvos</li>
+                    <i class="fi fi-br-bookmark"></i>
+                </div>
+                <div class="menu-item">
+                    <li>Editar Perfil</li>
+                    <i class="fi fi-br-user-pen"></i>
+                </div>
+                <div class="menu-item">
+                    <li>Configurações</li>
+                    <i class="fi fi-br-settings"></i>
+                </div>
+                <div class="menu-item" id="changeProfile">
+                    <li>Trocar de conta</li>
+                    <i class="fi fi-br-exchange"></i>
+                </div>
+            </ul>
+            <button id="trocarCargo">add pet</button>
+        </div>
+        <script>
+            document
+                .querySelector("#entrar")
+                .addEventListener("click", function () {
+                    window.location.href = "forms/form1.html";
+                });
+            const storedData = localStorage.getItem("formData");
+            if (storedData) {
+                const formData = JSON.parse(storedData);
+                document.querySelector("#entrar").style.display = "none";
+                document.querySelector("#avatar").style.display = "block";
+                document.querySelector("#usuarioName").innerHTML =
+                    formData.fullName;
+                var avatarImg = document.getElementById("avatarImg");
+                avatarImg.src = formData.photo;
+            }
+            document
+                .querySelector("#avatar")
+                .addEventListener("click", function () {
+                    const userNav = document.getElementById("userNav");
+                    if (userNav.style.display === "none") {
+                        userNav.style.display = "flex";
+                    } else {
+                        userNav.style.display = "none";
+                    }
+                });
+            document.querySelector("#changeProfile").addEventListener("click", function(){
+                window.location.href = "forms/form1.html";
+            });
+        </script>
+    </body>
+</html>
